@@ -1,0 +1,77 @@
+{
+  "name": "@notificator-project/astro",
+  "version": "0.1.0",
+  "description": "Server-side Notificator alerts and optional build notifications for Astro projects.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Vagelis P. <hello@vagelis.dev>",
+  "funding": "https://buymeacoffee.com/vagelis",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/notificator-project/astro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/notificator-project/astro/issues"
+  },
+  "homepage": "https://notificator-project.com/integrations/",
+  "keywords": [
+    "astro",
+    "astro-integration",
+    "notificator",
+    "notifications",
+    "alerts",
+    "push-notifications",
+    "mqtt",
+    "iot"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "import": "./dist/server.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && npm run test:unit && npm run test:astro",
+    "test:unit": "node --test test/*.test.mjs",
+    "test:astro": "astro build --root test/fixture",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run format:check && npm run typecheck && npm test",
+    "pack:check": "npm pack --dry-run",
+    "prepublishOnly": "npm run check && npm run pack:check"
+  },
+  "dependencies": {
+    "@notificator-project/api": "^0.1.0"
+  },
+  "peerDependencies": {
+    "astro": "^5.0.0 || ^6.0.0 || ^7.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "astro": "^7.2.9",
+    "prettier": "^3.0.0",
+    "typescript": "^5.9.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
