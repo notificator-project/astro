@@ -23,6 +23,7 @@ jobs:
           package-manager-cache: false
 
       - name: Verify release version
+        id: package
         shell: bash
         run: |
           package_version="$(node -p "require('./package.json').version")"
@@ -30,6 +31,18 @@ jobs:
           if [[ "$package_version" != "$tag_version" ]]; then
             echo "package.json version $package_version does not match release tag $GITHUB_REF_NAME"
             exit 1
+          fi
+          echo "version=$package_version" >> "$GITHUB_OUTPUT"
+
+      - name: Check npm registry
+        id: registry
+        shell: bash
+        run: |
+          if npm view "@notificator-project/astro@${{ steps.package.outputs.version }}" version --json >/dev/null 2>&1; then
+            echo "published=true" >> "$GITHUB_OUTPUT"
+            echo "Version ${{ steps.package.outputs.version }} is already available on npm."
+          else
+            echo "published=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Install dependencies
@@ -39,4 +52,9 @@ jobs:
         run: npm run check
 
       - name: Publish package
+        if: steps.registry.outputs.published != 'true'
         run: npm publish --access public --provenance
+
+      - name: Confirm existing package
+        if: steps.registry.outputs.published == 'true'
+        run: echo "Skipping npm publish because this version is already public."
