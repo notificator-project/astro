@@ -1,6 +1,6 @@
 {
   "name": "@notificator-project/astro",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Server-side Notificator alerts and optional build notifications for Astro projects.",
   "type": "module",
   "license": "MIT",
@@ -13,7 +13,7 @@
   "bugs": {
     "url": "https://github.com/notificator-project/astro/issues"
   },
-  "homepage": "https://notificator-project.com/get-started/",
+  "homepage": "https://docs.notificator-project.com/guides/astro-integration/",
   "keywords": [
     "astro",
     "astro-integration",
