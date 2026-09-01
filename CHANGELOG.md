@@ -2,6 +2,10 @@
 
 All notable changes to Notificator for Astro will be documented in this file.
 
+## 0.1.1 - 2026-09-01
+
+- Update the package homepage to the Notificator getting-started guide.
+
 ## 0.1.0 - 2026-08-31
 
 - Add a typed, server-only wrapper around the official Notificator Node.js SDK.
