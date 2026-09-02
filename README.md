@@ -22,7 +22,7 @@ The package does not add browser-side tracking, analytics, or a visual widget.
 
 - Node.js 20 or newer
 - Astro 5 or newer
-- A server-side `public_client` API key created in the Notificator mobile app
+- A server-side `public_client` API key created in the [web dashboard (beta)](https://dashboard.notificator-project.com) or Notificator mobile app
 - A server runtime, serverless function, Astro Action, or API route for runtime alerts
 
 A fully static site has no runtime server process. It can still use the optional build notification, or send alerts from a deployment hook or serverless function.
@@ -140,7 +140,7 @@ Email follows the account preference unless explicitly supplied. MQTT uses the c
 - Import this package only from trusted server-side code.
 - Never prefix the API key with `PUBLIC_` or expose it through client-side environment variables.
 - Never call the helper from a hydrated framework component or browser script.
-- Revoke an exposed key in the Notificator mobile app and create a replacement.
+- Revoke an exposed key in the web dashboard or Notificator mobile app and create a replacement.
 - The package does not request Expo, Supabase, email-provider, or platform MQTT credentials.
 
 ## Development
